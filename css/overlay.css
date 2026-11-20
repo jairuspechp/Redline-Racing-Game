@@ -1,0 +1,30 @@
+/* Countdown and results overlay */
+#ov{position:fixed;inset:0;background:rgba(10,11,14,.82);display:none;align-items:center;
+  justify-content:center;z-index:10;text-align:center;padding:16px}
+#ov.on{display:flex}
+#ov .box{background:#1b1d23;border:1px solid var(--line);border-radius:10px;padding:26px 34px;min-width:300px}
+#ov h2{margin:0 0 6px;font-size:2.4rem;font-style:italic}
+#cd{font-size:9rem;font-weight:800;font-style:italic;color:var(--sun);line-height:1}
+table{margin:14px auto 18px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+td{padding:5px 14px;border-bottom:1px solid var(--line);text-align:left}
+.me-row{color:var(--sun)}
+#ov.live{background:transparent;align-items:flex-end;pointer-events:none}
+#ov.live .box{pointer-events:auto}
+.lvlpick{display:flex;align-items:center;justify-content:center;gap:12px;
+  margin:0 0 14px;color:var(--mute);font-size:.9rem}
+.lvlpick b{color:var(--ink)}
+.lvlpick button{background:transparent;color:var(--ink);border:1px solid var(--line);
+  border-radius:6px;padding:6px 12px;font:inherit;cursor:pointer}
+.lvlpick button:hover:not(:disabled){border-color:var(--sun);color:var(--sun)}
+.lvlpick button:disabled{opacity:.35;cursor:default}
+.another{display:none;align-items:center;gap:10px;color:var(--mute);font-size:.9rem}
+.another b{color:var(--ink)}
+.another button:not(.go){background:transparent;color:var(--ink);border:1px solid var(--line);
+  border-radius:6px;padding:6px 12px;font:inherit;cursor:pointer}
+.another button:not(.go):hover:not(:disabled){border-color:var(--sun);color:var(--sun)}
+.another button:disabled{opacity:.35;cursor:default}
+#ov .box{max-height:92vh;overflow:auto}
+.menu{display:block;margin-top:12px;color:var(--mute);font-size:.9rem;text-decoration:none}
+.menu:hover{color:var(--sun)}
+.pb{color:var(--ok);font-weight:700;margin-top:6px}
+#ov .box .ghost{margin-top:10px}

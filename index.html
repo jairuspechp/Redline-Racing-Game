@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redline | Typing Race</title>
+<link rel="stylesheet" href="css/landing.css">
+<script src="js/records.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <a class="logo" href="index.html" aria-label="Redline Typing Race">
+      <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true">
+        <path d="M11.27 36.73A18 18 0 1 1 39.59 15" fill="none" stroke="#8b92a1" stroke-width="4" stroke-linecap="round"/>
+        <path d="M39.59 15A18 18 0 0 1 36.73 36.73" fill="none" stroke="#e5383b" stroke-width="4" stroke-linecap="round"/>
+        <path d="M24 24L37 21.7" stroke="#ff9f1c" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="3" fill="#ff9f1c"/>
+      </svg>
+      <span class="word">REDLINE<small>Typing Race</small></span>
+    </a>
+  </header>
+
+  <section class="hero">
+    <h1>Type fast.<br><span>Ride faster.</span></h1>
+    <p>Race a pack of computer riders, or sharpen your speed alone. Every correct key moves your bike down the track.</p>
+
+    <div class="lanes" aria-hidden="true">
+      <div class="l"><i style="--c:#ff9f1c;--t:5s"></i></div>
+      <div class="l"><i style="--c:#4aa3ff;--t:6.2s"></i></div>
+      <div class="l"><i style="--c:#b57bff;--t:7.4s"></i></div>
+    </div>
+  </section>  
+
+  <section class="modes">
+    <article class="card">
+      <h2>Race the bots</h2>
+      <p>Take on 1 to 10 computer riders. Finish the passage before they do and before time runs out.</p>
+      <div class="lv" id="lv" role="group" aria-label="Bot difficulty">
+        <button data-i="0">Easy</button>
+        <button data-i="1" class="on">Medium</button>
+        <button data-i="2">Hard</button>
+        <button data-i="3">Insane</button>
+      </div>
+      <a class="go" id="goBots" href="race.html?mode=bots&amp;lvl=1">Start match</a>
+    </article>
+
+    <article class="card">
+      <h2>Practice solo</h2>
+      <p>No bots, no pressure. Just you and the passage. Check your words per minute and accuracy.</p>
+      <ul>
+        <li>Same passages as the race</li>
+        <li>Live WPM, accuracy and timer</li>
+      </ul>
+      <a class="go alt" href="race.html?mode=solo">Start practice</a>
+    </article>
+  </section>
+
+  
+
+<section class="rec" id="rec" hidden>
+  <h2>Your records</h2>
+  <div class="nums" id="recNums"></div>
+  <table id="recRows"></table>
+</section>
+
+  <footer>Tip: click the passage if typing does not register. A wrong key will not move you forward.</footer>
+</div>
+
+<script>
+  /* Difficulty chips only change the link for "Start match". */
+  var lv = document.getElementById("lv"), goBots = document.getElementById("goBots");
+  lv.addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    lv.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); });
+    goBots.href = "race.html?mode=bots&lvl=" + b.dataset.i;
+  });
+
+  /* Personal records saved by the game (this browser only). */
+  var sm = Race.records.summary();
+  if (sm.count) {
+    document.getElementById("rec").hidden = false;
+    document.getElementById("recNums").innerHTML =
+      "<div><b>" + sm.best + "</b>best WPM</div><div><b>" + sm.avg + "</b>average WPM</div><div><b>" + sm.count + "</b>games</div>";
+    document.getElementById("recRows").innerHTML = Race.records.all().slice(0, 5).map(function (r) {
+      return "<tr><td>" + new Date(r.t).toLocaleDateString() + "</td><td>" + Race.records.label(r) +
+             "</td><td><b>" + r.wpm + "</b> WPM</td><td>" + r.acc + "%</td></tr>";
+    }).join("");
+  }
+</script>
+</body>
+</html>

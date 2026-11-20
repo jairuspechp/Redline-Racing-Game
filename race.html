@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redline Typing Race</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/track.css">
+<link rel="stylesheet" href="css/typing.css">
+<link rel="stylesheet" href="css/overlay.css">
+</head>
+<body>
+<main>
+  <header class="top">
+    <div>
+      <h1><a class="brand" href="index.html" title="Back to menu">Redline <span>Typing Race</span></a></h1>
+      <p class="sub">Type the passage faster than the other riders.</p>
+    </div>
+    <div class="bar">
+      <div class="seg" id="modeSw" role="group" aria-label="Mode">
+         <button data-m="solo">Practice solo</button>
+         <button data-m="bots">Fight bots</button> </div>
+         <button class="ghost" id="hist">Records</button>
+    <div class="diff" id="diff" role="group" aria-label="Difficulty"></div>
+      <button class="go" id="start">Start race</button>
+    </div>
+  </header>
+
+  <div class="track" id="track"></div>
+
+  <div class="stats">
+    <div><b id="swpm">0</b>words per minute</div>
+    <div><b id="sacc">100%</b>accuracy</div>
+    <div><b id="sprog">0%</b>distance</div>
+    <div><b id="sbest">0</b>best WPM</div>
+    <p class="hint">Click the passage if typing does not register. A wrong key will not move you forward.</p>
+  </div>
+
+  <div class="text" id="text" tabindex="0" aria-label="Typing passage"></div>
+  <textarea id="inp" class="hidden-input" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" aria-hidden="true" tabindex="-1"></textarea>
+</main>
+
+<div id="ov"><div class="box" id="box"></div></div>
+
+<!-- Load order matters: each file adds to the shared Race namespace. -->
+<script src="js/config.js"></script>
+<script src="js/text.js"></script>
+<script src="js/bike.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/bots.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+<script src="js/records.js"></script>
+</body>
+</html>

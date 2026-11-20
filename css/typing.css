@@ -1,0 +1,16 @@
+/* Passage box. Font size is chosen by js/ui.js (fitText) so the whole
+   paragraph always fits in the space left on screen. */
+.text{flex:1 1 0;min-height:0;overflow:auto;
+  background:#1b1d23;border:1px solid var(--line);border-radius:8px;
+  padding:clamp(10px,2vh,20px) clamp(12px,2vw,22px);
+  font:20px/1.6 "Cascadia Mono",Consolas,"Courier New",monospace;
+  cursor:text;
+  white-space:pre-wrap;        /* keep real spaces, wrap only at them */
+  overflow-wrap:break-word;    /* only splits a word if it's longer than a full line */
+}
+.text .wd{white-space:nowrap}
+.text span{border-radius:2px}
+.text .d{color:var(--ok)}
+.text .w{background:var(--red);color:#fff}
+.text .c{background:var(--sun);color:#1a1100}
+.text .n{color:#aab1bf}
